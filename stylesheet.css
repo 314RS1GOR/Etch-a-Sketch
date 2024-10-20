@@ -1,0 +1,25 @@
+.square{
+    border: 2px solid black;
+    height: 40px;
+    width: 40px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    /* max-height: 800px;
+    max-width: 800px;  */
+}
+
+.vertical{
+    display: flex;
+    flex-direction: column;
+}
+
+.darkened{
+    background-color: black;
+}
+
+.buttons-container{
+    display: flex;
+}

@@ -11,7 +11,6 @@ BuildGrid = function (cases){
         for (j=0; j<cases; j++){
             const square = document.createElement("div");
             square.addEventListener("mousemove", ()=>{
-                // square.style="background-color:black;";
                 square.classList.add("darkened");
             });
             square.classList.add("square");
@@ -47,6 +46,17 @@ NewGrid = function (){
     }
 }
 
+FixSizeOfSquares = function (){
+    const numberOfSquares = document.getElementsByClassName("square");
+    const heightOfSquares = 640/(Math.sqrt(numberOfSquares.length));
+
+    for (i=(numberOfSquares.length-1); i >= 0; i--){
+        /* console.log(numberOfSquares); */
+        numberOfSquares[i].style.height = heightOfSquares+"px";
+        numberOfSquares[i].style.width = heightOfSquares+"px";
+    }
+}
+
 resetButton.addEventListener("click", ()=>{
     resetSquares();
 });
@@ -55,6 +65,7 @@ resetButton.addEventListener("click", ()=>{
 gridbutton.addEventListener("click", ()=>{
     RemoveGrid();
     NewGrid();
+    FixSizeOfSquares();
 })
 
 

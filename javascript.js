@@ -4,6 +4,7 @@ const defaultNumberOfCases = 16;
 const resetButton = document.querySelector("#reset");
 const gridbutton = document.querySelector("#new-grid");
 const colorButton = document.querySelector("#randomize-colours");
+const colourGridButton = document.querySelector("#new-colour-grid");
 
 const colorArray = ['A', 'B', 'C','D','E','F',0,1,2,3,4,5,6,7,8,9];
 
@@ -69,7 +70,7 @@ RemoveGrid = function(){
 }
 
 NewGrid = function (){
-    let gridCasesNumber = prompt("Please set the number of cases: ");
+    let gridCasesNumber = prompt("Please set the number of cases per side: ");
     if (gridCasesNumber <= 100 && gridCasesNumber>0){
         BuildGrid(gridCasesNumber);
     }
@@ -79,6 +80,20 @@ NewGrid = function (){
         NewGrid();
     }
 }
+
+NewColourGrid = function (){
+    let gridCasesNumber = prompt("Please set the number of cases per side: ");
+    if (gridCasesNumber <= 100 && gridCasesNumber>0){
+        BuildColorGrid(gridCasesNumber);
+    }
+
+    else{
+        alert("Please enter a positive value inferior or equal to 100");
+        NewGrid();
+    }
+}
+
+
 
 FixSizeOfSquares = function (){
     const numberOfSquares = document.getElementsByClassName("square");
@@ -105,6 +120,12 @@ colorButton.addEventListener("click", ()=>{
     RemoveGrid();
     BuildColorGrid(defaultNumberOfCases);
 });
+
+colourGridButton.addEventListener("click", ()=>{
+    RemoveGrid();
+    NewColourGrid();
+    FixSizeOfSquares();
+})
 
 
 

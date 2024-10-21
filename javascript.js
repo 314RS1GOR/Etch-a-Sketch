@@ -2,7 +2,7 @@ const container = document.querySelector(".container");
 const defaultNumberOfCases = 16;
 
 const resetButton = document.querySelector("#reset");
-const gridbutton = document.querySelector("#new-grid");
+const gridButton = document.querySelector("#new-grid");
 const colourButton = document.querySelector("#randomize-colours");
 const colourGridButton = document.querySelector("#new-colour-grid");
 const colourList = ['black', 'red', 'orange', 'blue', 'purple', 'black', 'silver', 'gray', 'fuchsia', 'green', 'lime', 'olive', 'aqua', 'blue', 'teal', 'navy', 'maroon', 'yellow'];
@@ -62,7 +62,7 @@ CustomColourPicker = function (){
 
 }
 
-BuildColorGrid = function (cases){
+BuildColourGrid = function (cases){
     colourModeEnabled=1;
     for (let i=0; i<cases; i++){
         const newColumn = document.createElement("div");
@@ -71,7 +71,6 @@ BuildColorGrid = function (cases){
         for (j=0; j<cases; j++){
             const square = document.createElement("div");
             square.addEventListener("mousemove", ()=>{
-                // let couleur = ColorPicker();
                 square.style.backgroundColor = ColorPicker();
             });
             square.classList.add("square");
@@ -98,6 +97,12 @@ resetSquares = function (){
         for (let i = ((casesSelector.length)-1); i>=0; i--){
             casesSelector[i].style.backgroundColor="white";
         }
+
+        for (let i = 0; i < casesSelector.length; i++) {
+            casesSelector[i].replaceWith(casesSelector[i].cloneNode(true));
+        }
+
+        alert("Reset done. Please select a colour using the dedicated button.");
 
         colourModeEnabled=0;
     }
@@ -126,12 +131,12 @@ NewGrid = function (){
 NewColourGrid = function (){
     let gridCasesNumber = prompt("Please set the number of cases per side: ");
     if (gridCasesNumber <= 100 && gridCasesNumber>0){
-        BuildColorGrid(gridCasesNumber);
+        BuildColourGrid(gridCasesNumber);
     }
 
     else{
         alert("Please enter a positive value inferior or equal to 100");
-        NewGrid();
+        NewColourGrid();
     }
 }
 
@@ -152,7 +157,7 @@ resetButton.addEventListener("click", ()=>{
 });
 
 
-gridbutton.addEventListener("click", ()=>{
+gridButton.addEventListener("click", ()=>{
     RemoveGrid();
     NewGrid();
     FixSizeOfSquares();
@@ -160,7 +165,7 @@ gridbutton.addEventListener("click", ()=>{
 
 colourButton.addEventListener("click", ()=>{
     RemoveGrid();
-    BuildColorGrid(defaultNumberOfCases);
+    BuildColourGrid(defaultNumberOfCases);
 });
 
 colourGridButton.addEventListener("click", ()=>{

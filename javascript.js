@@ -3,12 +3,12 @@ const defaultNumberOfCases = 16;
 
 const resetButton = document.querySelector("#reset");
 const gridbutton = document.querySelector("#new-grid");
-const colorButton = document.querySelector("#randomize-colours");
+const colourButton = document.querySelector("#randomize-colours");
 const colourGridButton = document.querySelector("#new-colour-grid");
-const colourList = ['red', 'orange', 'blue', 'purple', 'black', 'silver', 'gray', 'fuchsia', 'green', 'lime', 'olive', 'aqua', 'blue', 'teal', 'navy'];
+const colourList = ['black', 'red', 'orange', 'blue', 'purple', 'black', 'silver', 'gray', 'fuchsia', 'green', 'lime', 'olive', 'aqua', 'blue', 'teal', 'navy', 'maroon', 'yellow'];
 const colourChoice = document.querySelector("#colour-choice");
 
-const colorArray = ['A', 'B', 'C','D','E','F',0,1,2,3,4,5,6,7,8,9];
+const colourArray = ['A', 'B', 'C','D','E','F',0,1,2,3,4,5,6,7,8,9];
 
 let colourModeEnabled = 0;
 
@@ -33,22 +33,32 @@ ColorPicker = function (){
     let myColor = "#";
 
     for (i=0; i<6; i++){
-        let colorHolder = colorArray[(Math.floor(Math.random() * colorArray.length))];
+        let colorHolder = colourArray[(Math.floor(Math.random() * colourArray.length))];
         myColor = myColor + colorHolder;
     }
 
     return myColor;
 }
 
-CustomColorPicker = function (){
-    chosenColour = prompt("Please select a color: ");
+CustomColourPicker = function (){
+    chosenColour = prompt(`Please select a color in the following list: \n${colourList.join(' ')}`);
     const selectAllCases = document.getElementsByClassName("square");
 
-    for (let i = ((selectAllCases.length)-1); i>=0; i--){
-        selectAllCases[i].addEventListener("mousemove", ()=>{
-            selectAllCases[i].style.backgroundColor = chosenColour;
-        });
+    if (colourList.includes(chosenColour)){
+        colourModeEnabled=1;
+        for (let i = ((selectAllCases.length)-1); i>=0; i--){
+            selectAllCases[i].addEventListener("mousemove", ()=>{
+                selectAllCases[i].style.backgroundColor = chosenColour;
+            });
+        }
     }
+
+    else{
+        alert("Please enter a valid colour");
+        CustomColourPicker();
+    }
+
+    
 
 }
 
@@ -148,7 +158,7 @@ gridbutton.addEventListener("click", ()=>{
     FixSizeOfSquares();
 })
 
-colorButton.addEventListener("click", ()=>{
+colourButton.addEventListener("click", ()=>{
     RemoveGrid();
     BuildColorGrid(defaultNumberOfCases);
 });
@@ -160,7 +170,7 @@ colourGridButton.addEventListener("click", ()=>{
 })
 
 colourChoice.addEventListener("click", ()=>{
-    CustomColorPicker();
+    CustomColourPicker();
 })
 
 

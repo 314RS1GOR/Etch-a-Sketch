@@ -10,7 +10,7 @@ Furthermore, this project allows to test one's understanding of 'DOM' manipulati
 * Etch A Sketch: Just hover your mouse over the cases to play! 
 * Resetting: Want to start another drawing? Click the 'reset' button to have a new empty board.
 * Custome grid size: Click 'Make a new grid' to set your own grid size. 
-* And more to come in future updates! 
+* Put colours in your life: Fill the sketch with random colours.
 
 # Technologies used
 
